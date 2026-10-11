@@ -1,32 +1,24 @@
-# UI/UX review and fix: {{PROJECT_NAME}}
+# UI/UX review and fix
 
-## Fill in
+## Inputs
 
-I fill in every `{{…}}` in this section. Everywhere else, `{{NAME}}` means the value given here. "none" turns off the
-steps that use that line. If a line here still shows `{{…}}`, ask me for it. Skip any step, row or note that doesn't
-apply to the Platform.
+Nothing here needs filling in. Work out each input from the checkout and list what you found at the top of the plan.
+My message may also name problems to look at first, bugs to fix first and areas whose placement must not change; what
+it says wins over what you find. Skip any step, row or note that doesn't apply to the platform or to what you found.
 
-- Repo and branch: {{REPO_PATH}} on {{BRANCH}}. Work only on this branch. (If the web and native apps live in separate
-  repos, list each repo with its branch.)
-- Platform: {{PLATFORM}} (web in any framework, React Native / Expo, both, or another stack, named).
-- Design kit, which governs screens and components: {{DESIGN_KIT_PATH}} (handoff notes, tokens, component sheet,
-  screen specimens; HTML/CSS, Figma exports, images or PDF), or none.
-- Brand guide, which governs the mark, colour use, type roles, icons and its do/don't list: {{BRAND_GUIDE_PATH}}, or
-  none.
-- Reference product that already follows the kit, for tie-breaks: {{REFERENCE_PRODUCT}} (a repo path, screenshots, or
-  a URL to view read-only), or none.
-- What looks wrong today: {{KNOWN_PROBLEMS}} (for example "fields oddly sized and placed, worst on X and Y").
-- Bugs to fix first, each as its own commit: {{EXTRA_FIXES}}, or none.
-- Areas whose placement must not change: {{DO_NOT_TOUCH}}, or none.
-- Audit folder, outside the repo: {{AUDIT_DIR}} (for example a sibling folder, `../<repo>-ui-audit`).
-- Commit rules: {{COMMIT_RULES}} (for example "the repo's conventions; no AI attribution in commits, PRs, code or
-  docs").
-- Sizes (defaults): phones 320×568, 360×740, 375×667, 390×844, 430×932; tablets 744×1133, 834×1194, 1024×1366,
+- **Repo and branch:** the repo you were started in, on its current branch. Work only on this branch. If my message
+  names other repos (for example a separate web and native app), cover each.
+- **Platform:** from the manifests: web (any framework), React Native / Expo, both, or another stack.
+- **Design kit**, which governs screens and components: look in the repo and beside it for handoff notes, tokens, a
+  component sheet or screen specimens (HTML/CSS, Figma exports, images or PDF). With none, use the no-kit rule under
+  "Which source wins".
+- **Brand guide**, which governs the mark, colour use, type roles, icons and its do/don't list: look the same way.
+  With none, skip the brand guide checklist.
+- **Native check:** the Android emulator if the Android SDK is installed, and the iOS Simulator on a Mac with Xcode.
+  Otherwise, a checklist for my own devices.
+- **Sizes** (defaults): phones 320×568, 360×740, 375×667, 390×844, 430×932; tablets 744×1133, 834×1194, 1024×1366,
   1194×834, 1366×1024; web desktop 1440×900, 1280×800, 1093×614 (1366×768 at 125%), 1024×768, 768×900, 700×900; plus
   one width either side of each breakpoint in the app's styles. Dark at one phone, one tablet and one desktop size.
-- Changes to those sizes: {{EDIT_SIZES}}, or none.
-- Native check: {{NATIVE_CHECK}} (for example "one development build on the Android emulator; iOS on my own devices",
-  or "Android emulator and iOS Simulator on my Mac"), or none.
 
 Sizes in this prompt are CSS px on the web and pt or dp on native, never CSS pt.
 
@@ -34,7 +26,7 @@ Sizes in this prompt are CSS px on the web and pt or dp on native, never CSS pt.
 
 Review every screen, state and shared component at the sizes, themes and text sizes set above and in Step 2. Fix how
 fields and controls are sized, placed and grouped so the product follows the design kit. Run a brand compliance check
-before and after. Fix {{EXTRA_FIXES}}. Nothing else about what the app does may change.
+before and after. Fix any bugs my message names. Nothing else about what the app does may change.
 
 ## How to work
 
@@ -44,11 +36,11 @@ before and after. Fix {{EXTRA_FIXES}}. Nothing else about what the app does may 
   components and the kit). Then design the fix and write a plan for my approval before you edit anything.
 - **The worked path.** This prompt was built on web apps and on React Native / Expo, captured with Playwright and adb.
   On another stack, use the equivalents and list the mapping in the plan.
-- **Resume.** Once I approve the plan, save it as `{{AUDIT_DIR}}/plan.md` and log progress in
-  `{{AUDIT_DIR}}/progress.md` as you go. If both already exist when you start, read them and resume at the first
-  unfinished step.
+- **Resume.** Once I approve the plan, save it as `plan.md` in the audit folder and log progress in `progress.md` there
+  as you go. If both already exist when you start, read them and resume at the first unfinished step.
 - **Ask me only what you can't decide.** Ask before planning:
   - the sizes, how the native check runs, and whether you may download or build a development build;
+  - where the design kit and brand guide are, if you found none or more than one;
   - the touch minimum (44×44 by default; Material asks for 48dp, WCAG 2.2 AA for 24×24). Wherever this prompt says
     44, use the agreed minimum;
   - the text-size caps (a good default: body text to 1.5× the OS size, and dense chrome, meaning tab labels, chips,
@@ -58,17 +50,19 @@ before and after. Fix {{EXTRA_FIXES}}. Nothing else about what the app does may 
   - the field order (the prototype's, or today's);
   - how compound fields such as addresses are laid out at each size (for example Street / City / State + Zip on
     phones, and City 7 · State 2 · Zip 3 grid spans on the web);
-  - what "don't touch" means for {{DO_NOT_TOUCH}} (it usually means the placement, not the sizing);
+  - which areas' placement must not change, if my message didn't say, and what "don't touch" means for them (it
+    usually means the placement, not the sizing);
   - whether the brand guide is in scope.
-- **Branches and commits.** Never create a branch or worktree without asking. Follow {{COMMIT_RULES}}.
+- **Branches and commits.** Never create a branch or worktree without asking. Follow the repo's commit conventions (its
+  agent and contributor docs, its recent history), with no AI attribution unless they call for it.
 - **Which source wins:**
-  - where the kit and the reference product differ, the kit wins; the reference product only breaks ties where the
-    kit is silent;
+  - where the kit and a reference product I name differ, the kit wins; the reference product only breaks ties where
+    the kit is silent;
   - the brand guide wins on its "never" rules (for example retired marks, filled icons, pure black or raw hex values)
     and wherever the kit is silent (for example a mono face with tabular figures for displayed IDs, dates and
     amounts);
-  - with no kit, write the app's de facto kit to `{{AUDIT_DIR}}/kit.md` (type and spacing scales, field heights,
-    radii, colours, shared components) and get it approved with the plan. Where the app is inconsistent or silent,
+  - with no kit, write the app's de facto kit to `kit.md` in the audit folder (type and spacing scales, field
+    heights, radii, colours, shared components) and get it approved with the plan. Where the app is inconsistent or silent,
     follow its most common pattern, then WCAG 2.2 AA and the platform's guidelines (Apple HIG, Material 3). `kit.md`
     is then "the kit" everywhere in this prompt;
   - every other conflict goes in the compliance report with your recommendation, for me to decide.
@@ -80,7 +74,7 @@ before and after. Fix {{EXTRA_FIXES}}. Nothing else about what the app does may 
   - labels change only where they are cut off or wrong; check each change against any label-driven behaviour (for
     example a keyboard type picked from the label) and against the tests that query it;
   - accessibility roles stay;
-  - prove {{DO_NOT_TOUCH}} placement is unchanged with a before/after geometry diff at every size.
+  - prove the placement of any don't-touch areas is unchanged with a before/after geometry diff at every size.
 - **Touch.** Every control gets a 44×44 touch area while keeping the kit's drawn size. On the web, use an invisible hit
   area (`::after`) scoped carefully. It can't attach to `<input>` or `<img>`, so put it on the label or a wrapper, and
   an ancestor with `overflow: hidden` clips it. On React Native, use `hitSlop` only where the parent has room (Android
@@ -92,8 +86,9 @@ before and after. Fix {{EXTRA_FIXES}}. Nothing else about what the app does may 
   pages the harness drives, so anything else that loads the app (a dev server's browser preview, your own browser,
   the emulator, server-side rendering) must reach the mock through the server's API URL. Hosted auth and backend SDKs
   (for example Firebase, Supabase, Auth0, Clerk) call their provider directly: seed the session or stub the SDK.
-- **The audit folder.** Keep the tooling and evidence in {{AUDIT_DIR}}, never in the repo, where the repo's own tools
-  (Metro, Jest, ESLint, TypeScript, knip, Tailwind) would pick them up:
+- **The audit folder.** Keep the tooling and evidence in a folder beside the repo (`../<repo>-ui-audit`, unless I name
+  another), never in the repo, where the repo's own tools (Metro, Jest, ESLint, TypeScript, knip, Tailwind) would pick
+  them up:
   - `harness/` and `evidence/before`, `evidence/after`;
   - the "before" copy of the app, and the native mirrors;
   - `plan.md` and `progress.md`;
@@ -123,7 +118,7 @@ before and after. Fix {{EXTRA_FIXES}}. Nothing else about what the app does may 
 
 ## Step 1: baseline and harness
 
-1. Start from a clean working tree on {{BRANCH}}; if it isn't clean, ask. Install exactly what the lockfile pins, if
+1. Start from a clean working tree on the current branch; if it isn't clean, ask. Install exactly what the lockfile pins, if
    there is one (`npm ci`, `pnpm install --frozen-lockfile`, `yarn install --immutable`). Run the full CI gates on HEAD
    so anything already red is known before any edit.
 2. Make the "before" app: a `git archive` of HEAD, plus the ignored files it needs (for example `.env*` and generated
@@ -268,7 +263,7 @@ Write a table per form: its eyebrow groups, rows, pairs and controls. Keep the f
 - Hard-coded colours moved to tokens.
 - Copy changed only where it is wrong.
 
-## Step 8: {{EXTRA_FIXES}}
+## Step 8: the bugs I named
 
 Fix each one with tests that fail on the old code. Each is its own commit, first in the list.
 
@@ -295,8 +290,8 @@ Run the matrix again on the same build, then check each of these:
   - open and close the keyboard several times, closing it with its own button, with Back and with a tap outside.
 - **Edges and brand:** nothing sits under the status bar or the gesture bar, the status bar follows the theme, and
   icons are crisp at every density.
-- **The fixes:** each of {{EXTRA_FIXES}} on the device, and the main flows for each role (for example sign-in through
-  the form).
+- **The fixes:** each bug I named, on the device, and the main flows for each role (for example sign-in through the
+  form).
 - **iOS:** on a Mac, run what you can on the Simulator. Write a checklist for my own devices: Dynamic Type up to AX3,
   Bold Text, dark, iPad orientations and Split View.
 
@@ -313,7 +308,7 @@ Run the matrix again on the same build, then check each of these:
 
 ## Step 12: commits and report
 
-- Themed commits in a sensible order, with {{EXTRA_FIXES}} first. Gates green before committing.
+- Themed commits in a sensible order, with the bugs I named first. Gates green before committing.
 - Stop the servers and the emulator.
 - Report:
   - before/after numbers for every measure;
