@@ -12,10 +12,11 @@ rest.
 1. Create an empty folder beside your repo for the audit's tooling and screenshots: `../my-app-ui-audit`, where
    `my-app` is your repo's folder name.
 2. Start your agent in the repo with the setup below.
-3. Paste [prompt.md](prompt.md) as your first message. Optionally add a line after it naming problems to look at first,
-   bugs to fix first or areas that must not move.
-4. Answer its questions, approve its plan and let it run. It takes hours, commits on your current branch and never
-   pushes.
+3. Paste all of [prompt.md](prompt.md), appendices included, as your first message. Optionally add a line after it
+   naming problems to look at first, bugs to fix first or areas that must not move.
+4. Answer its questions and approve its plan. It stops twice more to show you before/after screens and ask what only
+   you can decide. It takes hours, commits on your current branch, never pushes on its own, and checks CI after you
+   push.
 
 ## Setup
 
@@ -52,7 +53,7 @@ If Codex on Windows kills background dev servers, run it in WSL2.
 - In the repo: themed commits with shared components, lint rules, tests and a layout end-to-end spec.
 - In the audit folder: the plan, a progress log, before/after screenshots side by side, `inventory.md` (every issue
   and its fix) and `compliance.md` (kit and brand checks).
-- A final report with before/after numbers and the decisions it needs from you.
+- A final report with before/after numbers and the decisions you made.
 
 If a run stops (a crash or a usage limit), start it the same way and it resumes from the progress log.
 
