@@ -20,11 +20,11 @@ rest.
 
 ## Setup
 
-Last checked October 2026. Run it locally; the cloud versions can't reach your emulator.
+Last checked November 2026. Run it locally; the cloud versions can't reach your emulator.
 
 | | Claude Code | OpenAI Codex |
 |---|---|---|
-| Model | Opus 5.5 (Fable 5.1 for the most thorough run) | GPT-6.1 Sol |
+| Model | Opus 5.5 (Fable 5.2 for the most thorough run) | GPT-6.1 Sol |
 | Effort | `xhigh` | Extra High, including Plan mode |
 | Plan phase | Plan mode | `/plan` |
 | Long run | Approve with "Yes, and use auto mode" | `/permissions` → Approve for me |
