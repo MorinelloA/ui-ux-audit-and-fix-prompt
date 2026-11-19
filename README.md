@@ -52,7 +52,8 @@ If Codex on Windows kills background dev servers, run it in WSL2.
 
 - In the repo: themed commits with shared components, lint rules, tests and a layout end-to-end spec.
 - In the audit folder: the plan, a progress log, before/after screenshots side by side, `inventory.md` (every issue
-  and its fix) and `compliance.md` (kit and brand checks).
+  and its fix) and `compliance.md` (kit and brand checks). At the end the agent deletes the screenshots those pages
+  don't show, the copies of your app and any emulators it made, unless you ask it to keep everything.
 - A final report with before/after numbers and the decisions you made.
 
 If a run stops (a crash or a usage limit), start it the same way and it resumes from the progress log.

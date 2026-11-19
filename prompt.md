@@ -44,8 +44,8 @@ except fixes I agree to at a checkpoint.
   - **Where this prompt and the repo disagree:** each clash, the repo's rule and what you'll do instead. The repo wins
     on how to work (how servers start, branches, its e2e runner, file-size caps). Ask me about any clash that changes
     what gets checked;
-  - **The matrix:** the estimated state count (scenarios × sizes × variants) and rough time for the full matrix and
-    for a smaller tier (for example two phones, one tablet and one desktop);
+  - **The matrix:** the estimated state count (scenarios × sizes × variants), rough time and disk space for the full
+    matrix and for a smaller tier (for example two phones, one tablet and one desktop);
   - **Decisions:** each question, its options and my answer, kept up to date at every checkpoint.
 - **Decisions and checkpoints:**
   - Ask, don't file. Whenever something is mine to decide (a conflict, a departure from the kit, a problem found along
@@ -71,7 +71,7 @@ except fixes I agree to at a checkpoint.
   when you start, resume from Now and Next, and ask again any checkpoint questions still open.
 - **Ask me only what you can't decide**, before planning, in short rounds, each question with options and your
   recommendation first:
-  - the size tier, with each tier's state count and time;
+  - the size tier, with each tier's state count, time and disk space;
   - how the device check runs;
   - where the design kit and brand guide are, if you found none or more than one;
   - the touch minimum: 44×44 by default (Material asks for 48dp, WCAG 2.2 AA for 24×24; on the web, 44 under
@@ -133,8 +133,14 @@ except fixes I agree to at a checkpoint.
   repo's own tools (for example Metro, Jest, ESLint or Tailwind) would pick it up. It holds `harness/`,
   `evidence/before` and `evidence/after`, the "before" copy of the app, `plan.md`, `progress.md`, `inventory.md`,
   `compliance.md`, `kit.md` if there is no kit, `gallery/` (before and after side by side, the kit comparison, the
-  checkpoint pages), `report.md` and a `README.md` on how to re-run everything. Nothing overwrites `evidence/before`;
-  a new "before" capture gets a new folder.
+  checkpoint pages), `report.md` and a `README.md` on how to rebuild the "before" copy from its commit and re-run
+  everything. Nothing overwrites `evidence/before`; a new "before" capture gets a new folder.
+- **What the run leaves.** When the run ends, the audit folder keeps its Markdown files, the source in `harness/`,
+  `gallery/` and the measures (the JSON in `evidence/`). Everything else you put in it is temporary, and Step 13
+  deletes it: the screenshots, the "before" copy, other copies of the app, installed packages, downloaded browsers
+  and development builds. The gallery and the report may link into `evidence/` while you work; Step 13 moves what
+  they show into `gallery/` before it deletes anything. Keep a list in `progress.md` of what you create outside the
+  folder: emulator devices, simulators and development builds installed on a device.
 - **Servers.** Start servers the way the repo's docs require; where they say nothing, in the background or through
   your tool's preview feature. If the repo's way can't serve the harness, propose one in the plan. Point each server at
   the mock with environment variables when you start it, never by editing the working tree's `.env` files. Keep a
@@ -370,9 +376,18 @@ both sets of numbers come from the same measure.
   (store graphics, the device checklists, a new build to see native assets); links to the gallery, the kit
   comparison, `compliance.md` and `inventory.md`.
 - Stop the servers and the emulator.
+- Clean up, unless my message said to keep everything:
+  - check every image and link in the gallery, `report.md`, `compliance.md` and `inventory.md`. Where one points at a
+    file the cleanup will delete, move that file into `gallery/` and point the page at its new place;
+  - delete the audit folder's temporary files (see "What the run leaves"), including any settings files copied into
+    the "before" copy;
+  - uninstall each development build on your list, and delete each emulator device and simulator on it, never one
+    that was there before the run;
+  - open each gallery page and the report again, and check that every image and link resolves;
+  - write "Cleaned up", the date and the space freed to `progress.md`.
 - End with a short message: done or not, in one line; what was checked and how, with the headline numbers; anything
-  still open, asked as questions; links to the evidence. Say plainly what didn't run or didn't pass. The long form
-  stays in the report.
+  still open, asked as questions; links to the gallery and the report; what the cleanup deleted and the space it
+  freed. Say plainly what didn't run or didn't pass. The long form stays in the report.
 - Push only when I say, then check CI as under "Commits". If I push myself, I'll tell you.
 
 ## Traps from earlier runs (check for each before it costs you a re-run)
